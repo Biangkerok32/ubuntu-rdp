@@ -1,0 +1,18 @@
+name: Docker Ubuntu
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker run --rm -it -p 13389:3389 -p 10022:22 --shm-size=256m Biangkerok32/ubuntu-rdp:0.1.1
